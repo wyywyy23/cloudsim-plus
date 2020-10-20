@@ -101,10 +101,16 @@ public class CloudletTaskSchedulerSimple implements CloudletTaskScheduler {
 
     private void updateNetworkTasks(final NetworkCloudlet netcl) {
         netcl.getCurrentTask().ifPresent(task -> {
-            if (task.isSendTask())
+            if (task.isSendTask()) {
                addPacketsToBeSentFromVm(netcl);
-            else if (task.isReceiveTask())
+/*               LOGGER.info("{}: Cloudlet {} - task {} send",
+            		   task.getCloudlet().getSimulation().clockStr(), task.getCloudlet().getId(), task.getId());*/
+            }
+            else if (task.isReceiveTask()) {
                receivePackets(netcl);
+/*               LOGGER.info("{}: Cloudlet {} - task {} receive",
+            		   task.getCloudlet().getSimulation().clockStr(), task.getCloudlet().getId(), task.getId());*/
+            }
         });
     }
 

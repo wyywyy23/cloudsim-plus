@@ -10,6 +10,9 @@ package org.cloudbus.cloudsim.cloudlets.network;
 import org.cloudbus.cloudsim.cloudlets.Cloudlet;
 import org.cloudbus.cloudsim.cloudlets.CloudletExecution;
 import org.cloudbus.cloudsim.core.Identifiable;
+import org.cloudbus.cloudsim.schedulers.cloudlet.network.CloudletTaskSchedulerSimple;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Represents one of many tasks that can be executed by a {@link NetworkCloudlet}.
@@ -34,6 +37,9 @@ import org.cloudbus.cloudsim.core.Identifiable;
  * and {@link CloudletExecution} share a common set of attributes that would be defined by a common interface.
  */
 public abstract class CloudletTask implements Identifiable {
+    private static final Logger LOGGER = LoggerFactory.getLogger(CloudletTaskSchedulerSimple.class.getSimpleName());
+
+	
     private boolean finished;
 
     /**
@@ -122,6 +128,9 @@ public abstract class CloudletTask implements Identifiable {
      */
     public CloudletTask setStartTime(final double startTime) {
         this.startTime = startTime;
+/*        LOGGER.info("{}: Start time set for cloudlet {} - task {}, at {}",
+        		this.getCloudlet().getSimulation().clockStr(),
+        		this.getCloudlet().getId(), this.getId(), startTime);*/
         return this;
     }
 
